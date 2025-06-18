@@ -1,0 +1,33 @@
+import random
+import time
+
+# Constantes
+CHEGADA = 20
+CARROS = ["🏎️", "🚗", "🚙"]
+posicoes = [0, 0, 0]
+
+# Função para mostrar a pista
+def mostrar_pista():
+    for i in range(len(CARROS)):
+        pista = "-" * posicoes[i] + CARROS[i]
+        print(pista)
+
+# Função que faz um carro andar
+def rodada():
+    carro_escolhido = random.randint(0, 2)
+    posicoes[carro_escolhido] += 1
+
+# Função principal
+def iniciar_corrida():
+    print("🏁 Corrida Iniciando! 🏁\n")
+    while max(posicoes) < CHEGADA:
+        rodada()
+        mostrar_pista()
+        print()
+        time.sleep(0.2)
+
+    vencedor = posicoes.index(max(posicoes))
+    print(f"🎉 O carro {CARROS[vencedor]} venceu a corrida!")
+
+# Inicia o jogo
+iniciar_corrida()
